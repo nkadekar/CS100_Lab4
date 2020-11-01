@@ -67,4 +67,10 @@ TEST(OpTest, OpEvaluateLarge){
     EXPECT_EQ(test->evaluate(), 1574838237348);
 }
 
+TEST(OpTest, OpEvaluateStringify){
+    Op* test = new Op(1578);
+    EXPECT_EQ(test->evaluate(), "1578" );
+}
+
+
 #endif //__OP_TEST_HPP__
