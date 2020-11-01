@@ -12,7 +12,7 @@ class Sub : public Base {
         Base* leftChild = nullptr;
    		Base* rightChild = nullptr;
    public:
-   		Div(Base* leftChild, Base* rightChild) {
+   		Sub(Base* leftChild, Base* rightChild) {
 		    this->leftChild = leftChild;
 			this->rightChild = rightChild;
 		}
