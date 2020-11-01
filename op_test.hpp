@@ -25,7 +25,6 @@ TEST(DivTest, DivEvaluateNegative) {
 TEST(DivTest, DivStringify) {
 	Op* test = new Op(10); Op* test2 = new Op(2); Base* d = new Div(test, test2);
 	EXPECT_EQ(d->stringify(), "10 / 2");
-	EXPECT_NEAR(d->evaluate(), -4, .001);
 }
 
 TEST(SubTest, SubEvaluateNonZero){
