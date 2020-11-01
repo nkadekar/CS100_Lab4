@@ -6,6 +6,7 @@
 #include "op.hpp"
 #include "div.hpp"
 #include "sub.hpp"
+#include "pow.hpp"
 
 TEST(DivTest, DivEvaluateNonZero) {
     Op* test = new Op(10); Op* test2 = new Op(2); Base* d = new Div(test, test2);
@@ -50,6 +51,41 @@ TEST(SubTest, SubEvaluateSubtractNegative){
 TEST(SubTest, SubEvaluateFloats){
 	Op* test = new Op(1.999); Op* test2 = new Op(0.998); Base* s = new Sub(test, test2);
     EXPECT_NEAR(s->evaluate(), 1.001, .001);
+}
+
+TEST(SubTest, SubEvaluateStringify){
+	Op* test = new Op(2); Op* test2 = new Op(1); Base* s = new Sub(test, test2);
+	EXPECT_EQ(s->stringify(), "2 - 1");
+}
+
+TEST(PowTest, PowEvaluateNonZero){
+	Op* test = new Op(2); Op* test2 = new Op(3); Base* p = new Pow(test, test2);
+	EXPECT_NEAR(p->evaluate(), 8, 0.001);
+}
+
+TEST(PowTest, PowEvaluateZero){
+	Op* test = new Op(2); Op* test2 = new Op(0); Base* p = new Pow(test, test2);
+	EXPECT_NEAR(p->evaluate(), 1, 0.001);
+}
+
+TEST(PowTest, PowEvaluate2Zero){
+	Op* test = new Op(0); Op* test2 = new Op(0); Base* p = new Pow(test, test2);
+	EXPECT_NEAR(p->evaluate(), 1, 0.001);
+}
+
+TEST(PowTest, PowEvaluateNegative){
+	Op* test = new Op(2); Op* test2 = new Op(-1); Base* p = new Pow(test, test2);
+	EXPECT_NEAR(p->evaluate(), 0.5, 0.001);
+}
+
+TEST(PowTest, PowEvaluateLargeFloat){
+	Op* test = new Op(20.3); Op* test2 = new Op(5.1); Base* p = new Pow(test, test2);
+	EXPECT_NEAR(p->evaluate(), 4658325.09, 0.001);
+}
+
+TEST(PowTest, PowEvaluateStringify){
+	Op* test = new Op(2); Op* test2 = new Op(3); Base* p = new Pow(test, test2);
+	EXPECT_EQ(p->stringify(), "2 ** 3");
 }
 
 TEST(OpTest, OpEvaluateZero){
