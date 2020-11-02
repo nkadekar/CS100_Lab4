@@ -15,10 +15,10 @@ class Add : public Base {
             _lChild = left;
             _rChild = right;
         }
-        virtual double evaluate() { return _lChild->evaluate() - _rChild->evaluate(); }
+        virtual double evaluate() { return _lChild->evaluate() + _rChild->evaluate(); }
         virtual std::string stringify() {
             std::stringstream out;
-            out << _lChild->evaluate() << " - " << _rChild->evaluate();
+            out << _lChild->evaluate() << " + " << _rChild->evaluate();
             return out.str();
         }
 };
