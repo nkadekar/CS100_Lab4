@@ -7,6 +7,10 @@
 #include "div.hpp"
 #include "sub.hpp"
 #include "pow.hpp"
+#include "rand.hpp"
+#include <string>
+
+using namespace std;
 
 TEST(DivTest, DivEvaluateNonZero) {
     Op* test = new Op(10); Op* test2 = new Op(2); Base* d = new Div(test, test2);
@@ -105,8 +109,22 @@ TEST(OpTest, OpEvaluateLarge){
 
 TEST(OpTest, OpEvaluateStringify){
     Op* test = new Op(1578);
-    EXPECT_EQ(test->evaluate(), "1578" );
+    EXPECT_EQ(test->stringify(), "1578" );
 }
 
+TEST(RandTest, RandEvaluate1){
+    Rand* test = new Rand();
+    EXPECT_LT(test->evaluate(), 100);
+ }
+
+TEST(RandTest, RandEvaluate2){
+    Rand* test = new Rand();
+    EXPECT_LT(test->evaluate(), 100);
+}
+
+TEST(RandTest, RandEvaluateStringify){
+    Rand* test = new Rand();
+    EXPECT_NEAR(test->evaluate(), stod(test->stringify()), 0.001);
+}
 
 #endif //__OP_TEST_HPP__
