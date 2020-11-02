@@ -5,6 +5,7 @@
 
 #include "op.hpp"
 #include "div.hpp"
+#include "add.hpp"
 #include "sub.hpp"
 #include "pow.hpp"
 
@@ -108,5 +109,46 @@ TEST(OpTest, OpEvaluateStringify){
     EXPECT_EQ(test->evaluate(), "1578" );
 }
 
+TEST(AddTest, AddEvaluateZero){
+    Op* test1 = new Op(0);
+    Op* test2 = new Op(0);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 0);
+}
+
+TEST(AddTest, AddEvaluateZero2){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-8);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 0);
+}
+
+TEST(AddTest, AddEvaluateNeg){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-18);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), -10);
+}
+
+TEST(AddTest, AddEvaluateNeg2){
+    Op* test1 = new Op(-7);
+    Op* test2 = new Op(-8);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), -15);
+}
+
+TEST(AddTest, AddEvaluateLarge){
+    Op* test1 = new Op(783878);
+    Op* test2 = new Op(473827);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 1257705);
+}
+
+TEST(AddTest, AddEvaluateStringify){
+    Op* test1 = new Op(7);
+    Op* test2 = new Op(14);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->stringify(), "7 + 14");
+}
 
 #endif //__OP_TEST_HPP__
