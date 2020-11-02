@@ -4,6 +4,7 @@
 #include "gtest/gtest.h"
 
 #include "op.hpp"
+#include "mult.hpp"
 #include "div.hpp"
 #include "sub.hpp"
 #include "pow.hpp"
@@ -105,8 +106,42 @@ TEST(OpTest, OpEvaluateLarge){
 
 TEST(OpTest, OpEvaluateStringify){
     Op* test = new Op(1578);
-    EXPECT_EQ(test->evaluate(), "1578" );
+    EXPECT_EQ(test->stringify(), "1578");
 }
 
+TEST(MultTest, MultEvaluateZero){
+    Op* test1 = new Op(0);
+	Op* test2 = new Op(1);
+	Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 0);
+}
+
+TEST(MultTest, MultEvaluateNeg){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-8);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), -64);
+}
+
+TEST(MultTest, MultEvaluateNeg2){
+    Op* test1 = new Op(-7);
+    Op* test2 = new Op(-8);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 56);
+}
+
+TEST(MultTest, MultEvaluateLarge){
+    Op* test1 = new Op(783878);
+    Op* test2 = new Op(473827);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 371422561106);
+}
+
+TEST(MultTest, MultEvaluateStringify){
+    Op* test1 = new Op(7);
+    Op* test2 = new Op(14);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->stringify(), "7 * 14");
+}
 
 #endif //__OP_TEST_HPP__
