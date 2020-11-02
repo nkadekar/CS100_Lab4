@@ -3,6 +3,7 @@
 
 #include "base.hpp"
 #include <string>
+#include <iostream>
 
 class Op : public Base {
 	private:
@@ -10,7 +11,11 @@ class Op : public Base {
     public:
         Op(double value) : Base() { num = value; }
         virtual double evaluate() { return num; }
-        virtual std::string stringify() { return std::to_string(num); }
+        virtual std::string stringify() {
+			std::stringstream out;
+            out << num;
+            return out.str();
+		}		
 };
 
 #endif //__OP_HPP__
