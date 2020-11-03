@@ -1,6 +1,19 @@
 #include <iostream>
 
 #include "base.hpp"
+#include "mult.hpp"
+#include "div.hpp"
+#include "sub.hpp"
+#include "add.hpp"
+#include "op.hpp"
+#include "rand.hpp"
+#include "pow.hpp"
+#include <string>
+#include <sstream>
+#include <iomanip>
+
+
+using namespace std;
 
 int main() {
     // This is a very basic main, and being able to correctly execute this main
