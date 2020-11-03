@@ -8,7 +8,7 @@ ADD_EXECUTABLE(test
     unit_test.cpp
 )
 
-ADD_EXECUTABLE(a.out
+ADD_EXECUTABLE(lab
     main.cpp
 )
 
