@@ -4,7 +4,9 @@
 #include "gtest/gtest.h"
 
 #include "op.hpp"
+#include "mult.hpp"
 #include "div.hpp"
+#include "add.hpp"
 #include "sub.hpp"
 #include "pow.hpp"
 #include "rand.hpp"
@@ -109,7 +111,98 @@ TEST(OpTest, OpEvaluateLarge){
 
 TEST(OpTest, OpEvaluateStringify){
     Op* test = new Op(1578);
-    EXPECT_EQ(test->stringify(), "1578" );
+    EXPECT_EQ(test->stringify(), "1578");
+}
+
+TEST(AddTest, AddEvaluateZero){
+    Op* test1 = new Op(0);
+    Op* test2 = new Op(0);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 0);
+}
+
+TEST(AddTest, AddEvaluateZero2){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-8);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 0);
+}
+
+TEST(AddTest, AddEvaluateNeg){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-18);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), -10);
+}
+
+TEST(AddTest, AddEvaluateNeg2){
+    Op* test1 = new Op(-7);
+    Op* test2 = new Op(-8);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), -15);
+}
+
+TEST(AddTest, AddEvaluateLarge){
+    Op* test1 = new Op(783878);
+    Op* test2 = new Op(473827);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->evaluate(), 1257705);
+}
+
+TEST(AddTest, AddEvaluateStringify){
+    Op* test1 = new Op(7);
+    Op* test2 = new Op(14);
+    Base* ad = new Add(test1, test2);
+    EXPECT_EQ(ad->stringify(), "7 + 14");
+}
+
+TEST(MultTest, MultEvaluateZero){
+    Op* test1 = new Op(0);
+	Op* test2 = new Op(1);
+	Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 0);
+}
+
+TEST(MultTest, MultEvaluateNeg){
+    Op* test1 = new Op(8);
+    Op* test2 = new Op(-8);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), -64);
+}
+
+TEST(MultTest, MultEvaluateNeg2){
+    Op* test1 = new Op(-7);
+    Op* test2 = new Op(-8);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 56);
+}
+
+TEST(MultTest, MultEvaluateFloat){
+    Op* test1 = new Op(7838.78);
+    Op* test2 = new Op(47382.7);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_NEAR(mu->evaluate(), 371422561.106, 0.0001);
+}
+
+TEST(MultTest, MultEvaluateFloat2){
+    Op* test1 = new Op(78.3878);
+    Op* test2 = new Op(473.827);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_NEAR(mu->evaluate(), 37142.2561106, 0.0001);
+}
+
+TEST(MultTest, MultEvaluateLarge){
+    Op* test1 = new Op(783878);
+    Op* test2 = new Op(473827);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->evaluate(), 371422561106);
+}
+
+TEST(MultTest, MultEvaluateStringify){
+    Op* test1 = new Op(7);
+    Op* test2 = new Op(14);
+    Base* mu = new Mult(test1, test2);
+    EXPECT_EQ(mu->stringify(), "7 * 14");
 }
 
 TEST(RandTest, RandEvaluate1){
