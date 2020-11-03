@@ -18,7 +18,7 @@ class Mult : public Base {
 		virtual double evaluate() { return _lChild->evaluate() * _rChild->evaluate(); }
 		virtual std::string stringify() {
 			std::stringstream out;
-            out << _lChild->evaluate() << " * " << _rChild->evaluate();
+            out << setprecision(5) << _lChild->evaluate() << " * " << _rChild->evaluate();
             return out.str();
 		}
 };
