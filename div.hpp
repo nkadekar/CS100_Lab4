@@ -21,7 +21,7 @@ class Div : public Base {
 		virtual double evaluate() { return leftChild->evaluate() / rightChild->evaluate(); }
 		virtual std::string stringify() {
 			ostringstream inSS;
-			inSS << setprecision(5) << leftChild->evaluate() << " / " << rightChild->evaluate();
+			inSS << setprecision(5) << leftChild->stringify() << " / " << rightChild->stringify();
 			return inSS.str(); }
 };
 

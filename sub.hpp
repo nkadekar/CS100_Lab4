@@ -19,7 +19,7 @@ class Sub : public Base {
 		virtual double evaluate() { return leftChild->evaluate() - rightChild->evaluate(); }
 		virtual std::string stringify() {
 			std::ostringstream inSS;
-			inSS << std::setprecision(5) << leftChild->evaluate() << " - " << rightChild->evaluate();
+			inSS << std::setprecision(5) << leftChild->stringify() << " - " << rightChild->stringify();
 			return inSS.str();
 		}
 };

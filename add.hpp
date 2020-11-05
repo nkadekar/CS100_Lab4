@@ -18,7 +18,7 @@ class Add : public Base {
         virtual double evaluate() { return _lChild->evaluate() + _rChild->evaluate(); }
         virtual std::string stringify() {
             std::stringstream out;
-            out << std::setprecision(5) << _lChild->evaluate() << " + " << _rChild->evaluate();
+            out << std::setprecision(5) << _lChild->stringify() << " + " << _rChild->stringify();
             return out.str();
         }
 };
